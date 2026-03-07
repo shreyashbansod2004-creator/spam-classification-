@@ -5,9 +5,14 @@ import string
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 
-# -------- NLTK DOWNLOAD (FIX FOR STREAMLIT CLOUD) --------
-nltk.download('punkt')
-nltk.download('stopwords')
+# -------- FIX NLTK ERROR (STREAMLIT CLOUD) --------
+@st.cache_resource
+def load_nltk():
+    nltk.download('punkt_tab')
+    nltk.download('punkt')
+    nltk.download('stopwords')
+
+load_nltk()
 
 ps = PorterStemmer()
 
@@ -164,8 +169,10 @@ def transform_text(text):
     text=y[:]
     y.clear()
 
+    stop_words = stopwords.words('english')
+
     for i in text:
-        if i not in stopwords.words('english') and i not in string.punctuation:
+        if i not in stop_words and i not in string.punctuation:
             y.append(i)
 
     text=y[:]
