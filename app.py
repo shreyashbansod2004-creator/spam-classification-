@@ -5,6 +5,10 @@ import string
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 
+# -------- NLTK DOWNLOAD (FIX FOR STREAMLIT CLOUD) --------
+nltk.download('punkt')
+nltk.download('stopwords')
+
 ps = PorterStemmer()
 
 # ---------- LOAD MODEL ----------
@@ -49,7 +53,7 @@ transform: rotate(-45deg);
 animation: meteor 5s linear infinite;
 }
 
-/* RANDOM START POSITIONS (BOTTOM) */
+/* RANDOM START POSITIONS */
 
 .meteor:nth-child(1){ bottom:-10%; left:10%; animation-delay:0s;}
 .meteor:nth-child(2){ bottom:-20%; left:30%; animation-delay:1s;}
@@ -61,8 +65,6 @@ animation: meteor 5s linear infinite;
 .meteor:nth-child(8){ bottom:-20%; left:60%; animation-delay:3.5s;}
 .meteor:nth-child(9){ bottom:-15%; left:80%; animation-delay:4.5s;}
 .meteor:nth-child(10){ bottom:-10%; left:5%; animation-delay:5s;}
-
-/* METEOR MOVEMENT (BOTTOM → TOP) */
 
 @keyframes meteor {
 
